@@ -1,9 +1,27 @@
 <html>
 <head>
-    <title> Learning html and Templates </title>
+
+    <title> Joseph's mini blog </title>
 </head>
 <body>
-<h1> {{.Title}}</h1>
-<p>{{.Content}}</p>
+<header>
+    <nav>
+        <ul>
+            <li><a href="addpost.html" target="_blank">Create Post</a></li>
+        </ul>
+    </nav>
+</header>
+ {{range $i, $v:= .}}
+    {{if $v.Status}}
+<h1>{{.Title}}</h1>
+<p>
+    {{.Content}}
+    <br>
+    <a href="" target="_blank">edit</a>
+    <br>
+    <a href="" target="_blank">Delete</a>
+</p>
+    {{end}}
+    {{end}}
 </body>
 </html>
