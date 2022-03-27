@@ -12,8 +12,9 @@
     </nav>
 </header>
 <form method="post">
-    <textarea name="title"></textarea>
-    <textarea name="content"></textarea>
+    <textarea name="tit">{{ .Title }}</textarea>
+    <textarea name="con">{{ .Content }}</textarea>
+
     <div>
         <button type="submit">Post</button>
     </div>

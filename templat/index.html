@@ -7,19 +7,21 @@
 <header>
     <nav>
         <ul>
-            <li><a href="addpost.html" target="_blank">Create Post</a></li>
+            <li><a href="addpost.html" target="">Create Post</a></li>
+
         </ul>
     </nav>
 </header>
+
  {{range $i, $v:= .}}
     {{if $v.Status}}
 <h1>{{.Title}}</h1>
 <p>
     {{.Content}}
     <br>
-    <a href="" target="_blank">edit</a>
+    <a href="update/{{ .Id }}" target="">{{ .Edit}}</a>
     <br>
-    <a href="" target="_blank">Delete</a>
+    <a href="del/{{ .Id }}" target="">{{ .Delete}}</a>
 </p>
     {{end}}
     {{end}}
