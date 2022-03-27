@@ -15,6 +15,9 @@ func Error(e error) {
 	}
 }
 
+//For holding data to be edited
+var d Data
+
 // Data Structure containing everything I need to manipulate my data/content
 type Data struct {
 	Id      string
@@ -127,8 +130,8 @@ func updateByIdhandler(w http.ResponseWriter, r *http.Request) {
 	for i, _ := range DataStructure {
 		if ID == DataStructure[i].Id {
 
-			//Turn the status into false so that it won't be printed because or html only prints true
-			DataStructure[i].Status = false
+			//This stores the data gotten in d for easy manipulation/editting
+			d = DataStructure[i]
 
 			//This points to the html location
 			t, e := template.ParseFiles("templat/editpost.html")
@@ -144,27 +147,27 @@ func updateByIdhandler(w http.ResponseWriter, r *http.Request) {
 
 //After getting the content to be edited in html page, after editing, it will create a new item of it and store in database
 func postupdateByIdhandler(w http.ResponseWriter, r *http.Request) {
-	//Creating an instance of the data structure
-	f := Data{}
-
 	//This gets/populates the content of the form
 	e := r.ParseForm()
 	Error(e)
+
+	//This is to check the DataStructure for id matching that of data d.id and delete
+	for i, _ := range DataStructure {
+		if DataStructure[i].Id == d.Id {
+			DataStructure = append(DataStructure[:i], DataStructure[i+1:]...)
+		}
+	}
 
 	//Gets the id/name of the form components
 	title := r.PostForm.Get("tit")
 	content := r.PostForm.Get("con")
 
 	//Filling the data struct instance
-	f.Title = title
-	f.Content = content
-	f.Status = true
-	f.Edit = "Edit"
-	f.Delete = "Delete"
-	f.Id = uuid.NewString() //new id is being populated for an item using google/uuid
+	d.Title = title
+	d.Content = content
 
 	//Attach the f to the Data base so that it can be populated on the index page
-	DataStructure = append(DataStructure, f)
+	DataStructure = append(DataStructure, d)
 
 	//redirect your page back to the index/home page when done (on a click)
 	http.Redirect(w, r, "/", 302)
