@@ -1,13 +1,75 @@
 <html>
 <head>
-
+    <link href="/templat/style.css" rel="stylesheet">
     <title> Joseph's mini blog </title>
+    <style>
+        /**{*/
+        /*    margin: 0;*/
+        /*    padding: 0;*/
+        /*}*/
+        body{
+            background: blanchedalmond;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        nav{
+            /* border: 1px solid blue; */
+            /*position: fixed;*/
+            width: 100%;
+            overflow: hidden;
+            background: black;
+        }
+        ul{
+            list-style-type: none;
+            /*border: 1px solid red;*/
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ul li{
+            /* border: 1px solid purple; */
+            padding-top: 20px;
+        }
+        ul>li:first-child{
+            /* border: 3px solid red; */
+            width: 650px;
+            height: 55px;
+            margin-left: 30px;
+            color: blanchedalmond;
+
+        }
+
+        ul>li:nth-child(2){
+            margin-right: 80px;
+        }
+        ul>li:nth-child(2) a{
+            /* border: 3px solid green; */
+            color: black;
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+
+        .page{
+            border: aqua;
+            justify-content: center;
+            justify-items: center;
+        }
+    </style>
 </head>
-<body>
+<body class="navbar">
 <header>
     <nav>
         <ul>
-            <li><a href="addpost.html" target="">Create Post</a></li>
+            <li><h1>
+                WELCOME to Jay's page where your contents make headline
+            </h1></li>
+
+            <li><button><a href="addpost" target="">Create Post</a></button></li>
 
         </ul>
     </nav>
@@ -15,15 +77,18 @@
 
  {{range $i, $v:= .}}
     {{if $v.Status}}
-<h1>{{.Title}}</h1>
+<div class="page">
+<h2>{{ $v.Title}}</h2>
 <p>
-    {{.Content}}
+    {{ $v.Content}}
     <br>
     <a href="update/{{ .Id }}" target="">{{ .Edit}}</a>
     <br>
     <a href="del/{{ .Id }}" target="">{{ .Delete}}</a>
 </p>
+</div>
     {{end}}
     {{end}}
+
 </body>
 </html>

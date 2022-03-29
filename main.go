@@ -15,9 +15,6 @@ func Error(e error) {
 	}
 }
 
-//For holding data to be edited
-var d Data
-
 // Data Structure containing everything I need to manipulate my data/content
 type Data struct {
 	Id      string
@@ -31,11 +28,15 @@ type Data struct {
 //DataStructure is a database in which my data are stored both before and after manipulation
 var DataStructure []Data
 
+//For holding data to be edited
+var d Data
+
 //Main is where my program runs
 func main() {
-	//chi is an external router package imported
+	//chi is an external router package imported and it serves as my router
 	router := chi.NewRouter()
-	register(router)
+
+	register(router) // function of all to be routed
 
 	//Listening on my system port 8080 and routing it through the chi router
 	e := http.ListenAndServe(":8080", router)
@@ -45,10 +46,10 @@ func main() {
 
 //register initializes all my commands and html pages and it is called in the main
 func register(router *chi.Mux) {
-	router.Get("/addpost.html", getContenthandler)
+	router.Get("/addpost", getContenthandler)
 	router.Get("/del/{Id}", deleteByIdhandler)
 	router.Get("/", indexhandler)
-	router.Post("/addpost.html", postContenthandler)
+	router.Post("/addpost", postContenthandler)
 	router.Get("/update/{Id}", updateByIdhandler)
 	router.Post("/update/{Id}", postupdateByIdhandler)
 }
@@ -62,6 +63,7 @@ func indexhandler(w http.ResponseWriter, r *http.Request) {
 	//This writes whatever is in the DataStructure database to the html file
 	e = t.Execute(w, DataStructure)
 	Error(e)
+
 }
 
 //To get content page

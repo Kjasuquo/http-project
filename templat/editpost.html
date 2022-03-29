@@ -1,21 +1,53 @@
 <html>
 <head>
-
     <title> Joseph's mini blog </title>
+    <style>
+        body{
+            background: blanchedalmond;
+        }
+        a{
+            text-decoration: none;
+        }
+        nav{
+            /* border: 1px solid blue; */
+            /*position: fixed;*/
+            width: 100%;
+            overflow: hidden;
+            background: black;
+        }
+        ul{
+            list-style-type: none;
+            /*border: 1px solid red;*/
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ul li a{
+            /* border: 1px solid purple; */
+            padding-top: 20px;
+            color: black;
+            font-size: 25px;
+        }
+
+    </style>
 </head>
 <body>
 <header>
     <nav>
         <ul>
-            <li><a href="/" target="">Home</a></li>
+            <li><button><a href="/" target="">Home</a></button></li>
         </ul>
     </nav>
 </header>
 <form method="post">
-    <textarea name="tit">{{ .Title }}</textarea>
-    <textarea name="con">{{ .Content }}</textarea>
+    <label>Title</label><br>
+    <textarea name="tit">{{ .Title }}</textarea><br><br>
+    <label>Content</label><br>
+    <textarea name="con">{{ .Content }}</textarea><br>
 
     <div>
+        <br>
         <button type="submit">Post</button>
     </div>
 

@@ -1,0 +1,8 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(225, 183, 239);
+    position: sticky;
+    top: 0;
+}
