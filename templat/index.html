@@ -78,9 +78,9 @@
  {{range $i, $v:= .}}
     {{if $v.Status}}
 <div class="page">
-<h2>{{ $v.Title}}</h2>
+<h2>{{ .Title}}</h2>
 <p>
-    {{ $v.Content}}
+    {{ .Content}}
     <br>
     <a href="update/{{ .Id }}" target="">{{ .Edit}}</a>
     <br>
