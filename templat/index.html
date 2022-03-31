@@ -79,12 +79,19 @@
     {{if $v.Status}}
 <div class="page">
 <h2>{{ .Title}}</h2>
-<p>
+<p style="font-size: 23px">
     {{ .Content}}
-    <br>
-    <a href="update/{{ .Id }}" target="">{{ .Edit}}</a>
-    <br>
-    <a href="del/{{ .Id }}" target="">{{ .Delete}}</a>
+    <table>
+    <tr>
+        <td>
+    <button><a href="update/{{ .Id }}" style="font-size: 18px" target="">{{ .Edit}}</a></button>
+        </td>
+    <br> <br>
+        <td>
+    <button><a href="del/{{ .Id }}" style="font-size: 18px" target="">{{ .Delete}}</a></button>
+        </td>
+    </tr>
+</table>
 </p>
 </div>
     {{end}}
