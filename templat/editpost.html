@@ -40,11 +40,11 @@
         </ul>
     </nav>
 </header>
-<form method="post" style="padding: 150px 0px 0px 350px";>
+<form action="/update/{{.Id}}" method="post" style="padding: 150px 0px 0px 350px";>
     <label style="font-size: 20px">Title</label><br>
-    <textarea name="tit" style="width: 700px; height: 50px; font-size: 18px">{{.Title}}</textarea><br><br>
+    <textarea name="tit" style="width: 700px; height: 50px; font-size: 18px" required>{{.Title}}</textarea><br><br>
     <label style="font-size: 20px">Content</label><br>
-    <textarea name="con" style="width: 700px; height: 300px; font-size: 18px">{{.Content}}</textarea><br>
+    <textarea name="con" style="width: 700px; height: 300px; font-size: 18px" required>{{.Content}}</textarea><br>
     <div>
         <br>
         <button type="submit" style="height: 35px; width: 60px; font-size: 20px">Post</button>
